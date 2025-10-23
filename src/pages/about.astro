@@ -1,5 +1,26 @@
 ---
+import '../styles/global.css';
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 
+const pageTitle: string = "About Me";
+
+const identity = {
+    firstName: "Carlos",
+    country: "Chile",
+    occupation: "Computer Science Student",
+    hobbies: ["videogames", "programming", "guitar"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "Express", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textTransform = "uppercase";
 ---
 
 <html lang="en">
@@ -8,14 +29,24 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>About</title>
+		<title>{pageTitle}</title>
+        <style define:vars={{skillColor, fontWeight, textTransform}}>
+            h1 {
+                color:purple;
+                font-size: 4rem 
+            }
+
+            .skill {
+                color: var(--skillColor);
+                font-weight: var(--fontWeight);
+                text-transform: var(--textTransform);
+            }
+        </style>
 	</head>
 	<body>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/blog">Blog</a>
+		<Navigation />
 
-		<h1>About</h1>
+		<h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
         <p>
             I am working thorugh Astro's introductory tutorial. This is the second page on my
@@ -25,5 +56,23 @@
         <p>
             This site will update as i complete more of the tutorial, so keep checking.
         </p>
+
+        <p>Here are a wef facts about me:</p>
+        <ul>
+            <li>My name is {identity.firstName} and i am a {identity.occupation}.</li>
+            {identity.hobbies.length >= 2 &&
+                <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+            }
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+
+        {happy && <p>I am happy to be learning Astro!</p>}
+        {finished && <p>I finished this tutorial!</p>}
+        {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not to finish in 3 days.</p>}
+        
+        <Footer />
 	</body>
 </html>
