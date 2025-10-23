@@ -22,14 +22,11 @@ h1 {
 
 /* Header */
 
-.header {
-  background-color: #000000;
-  padding: 1rem;
-  font-weight: 700;
-}
-
 @media screen and (width > 636px) {
   .header {
+    background-color: #000000;
+    padding: 1rem;
+    font-weight: 700;
     display: flex;
     justify-content: flex-end;
     gap: .5rem;
@@ -40,8 +37,19 @@ h1 {
 
 /* nav styles */
 
+.menu {
+  background-color: #0d0950;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  width: 100%;
+}
+
 .nav-links {
   display: block;
+  display: none;
   margin: 0;
 }
 
@@ -54,11 +62,16 @@ h1 {
   font-weight: bold;
   text-transform: uppercase;
   color: #FFFFFF;
+  background-color: #000000;
 }
 
 .nav-links a:hover,
 .nav-links a:focus {
   color: #4c1d95;
+}
+
+:has(.menu[aria-expanded="true"]) .nav-links {
+  display: unset;
 }
 
 @media screen and (min-width: 636px) {
@@ -72,5 +85,9 @@ h1 {
   .nav-links a {
     display: inline-block;
     padding: 15px 20px;
+  }
+
+  .menu {
+    display: none;
   }
 }
