@@ -1,9 +1,22 @@
 ---
 import Navigation from "./Navigation.astro"
 import Menu from "./Menu.astro"
+import ThemeIcon from './ThemeIcon.astro'
 ---
 
 <header class="header">
-    <Menu />
+    <nav>
+        <div>
+            <ThemeIcon />
+            <Menu />
+        </div>
+    </nav>
     <Navigation />
 </header>
+
+<style>
+    div {
+        display: flex;
+        justify-content: space-between
+    }
+</style>
